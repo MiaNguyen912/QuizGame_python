@@ -27,4 +27,4 @@ response.raise_for_status()  # raise an HTTPError if the HTTP request returned a
 
 data = response.json()  # get the json data
 question_data = data["results"]  # this will give list of question dicts
-print(question_data)
+# print(question_data)
