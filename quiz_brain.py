@@ -12,18 +12,24 @@ class QuizBrain:
         return self.question_number < len(self.question_list)
 
     def next_question(self):
-        curr_question = self.question_list[self.question_number]  # retrieve the current question
+        self.curr_question = self.question_list[self.question_number]  # retrieve the current question
         self.question_number += 1
-        question_text = curr_question.text
+        self.correct_answer = self.curr_question.answer
+        question_text = self.curr_question.text
         question_text = html.unescape(question_text)  # comment out this line and run program to see the difference
-        user_answer = input(f"Q.{self.question_number}: {question_text} (True/False): ")
-        self.check_answer(user_answer, curr_question.answer)
+
+        # user_answer = input(f"Q.{self.question_number}: {question_text} (True/False): ")
+        # self.check_answer(user_answer, curr_question.answer)
+
+        return f"Q.{self.question_number}: {question_text}"
 
     def check_answer(self, user_answer, correct_answser):
         if user_answer.lower() == correct_answser.lower():
-            print("    Your got it right")
+            # print("    Your got it right")
             self.score += 1
+            return True
         else:
-            print("    That's wrong.")
-        print(f"    The correct answer was: {correct_answser}")
-        print(f"    Your current score is: {self.score}/{self.question_number}\n")
+            # print("    That's wrong.")
+            return False
+        # print(f"    The correct answer was: {correct_answser}")
+        # print(f"    Your current score is: {self.score}/{self.question_number}\n")
